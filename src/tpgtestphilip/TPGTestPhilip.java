@@ -15,6 +15,7 @@ public class TPGTestPhilip {
 
     /**
      * @param args the command line arguments
+     * //Main method for calling other methods
      */
     public static void main(String[] args) throws IOException {
         //Question 1

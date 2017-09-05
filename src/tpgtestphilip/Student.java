@@ -19,9 +19,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author User
+ * @author Philip Shi 05/09/2017
  */
 public class Student {
+    
+    //Creating object Student
     
     private int ID;
     private String name;
@@ -61,10 +63,12 @@ public class Student {
         this.GPA = GPA;
     }
     
+    //Creating comparator method to sort students
     class StudentComparatorByAll implements Comparator<Student> {
     @Override
     public int compare(Student o1, Student o2) {
         int result = 0;
+        //Sorts GPA in descending order.
         if (o1.getGPA() > o2.getGPA()) result = -1;
         if (o1.getGPA() < o2.getGPA()) result = 1;
         if (result == 0){
@@ -83,6 +87,7 @@ public class Student {
     
     public void sortStudents () throws IOException {
     
+        //Adding data to arraylist from csv file.
         List<Student> students = new ArrayList<Student>();
         BufferedReader br;
         try {
@@ -99,16 +104,14 @@ public class Student {
             
             //Add all the data into a priority queue to be sorted, using the comparator we made earlier
             PriorityQueue<Student> pq = new PriorityQueue<Student>(10, new StudentComparatorByAll());
-                pq.addAll(students);
-                Student stu = null;
-                //While the queue is not empty, after its sorted print out the names.
-                while ((stu = pq.poll()) != null)
-                System.out.println(stu.name);
-                
+            pq.addAll(students);
+            Student stu = null;
+            //While the queue is not empty, after its sorted, print out the names.
+            while ((stu = pq.poll()) != null)
+                System.out.println(stu.name);                    
         } catch (FileNotFoundException ex) {
             System.out.println("Cannot find student info file");
             ex.printStackTrace();
-        }
-    
+        }    
     }
 }
